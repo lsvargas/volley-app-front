@@ -23,7 +23,7 @@ function Home() {
   const { loading, data } = useQuery(FETCH_TEMPLATE_LISTS);
 
   const handleCreateSuccess = ({ createList }) => {
-    setLink(`http://localhost:3000/lists/${createList.id}`)
+    setLink(`https://volley-app-front.vercel.app/lists/${createList.id}`)
   };
 
   const [createList] = useMutation(CREATE_LIST, {
