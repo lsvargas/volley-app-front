@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider
+} from "@apollo/client";
+
+import Layout from './components/Layout';
+import Menu from './components/Menu';
+
+import {
+  TemplateLists,
+  TemplateList,
+  Users,
+  Home,
+  List,
+  Lists
+}  from './pages';
+
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000',
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <Menu />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/lists/:id" element={<List />} />
+            <Route path="/lists" element={<Lists />} />
+            <Route path="/template_lists" element={<TemplateLists />} />
+            <Route path="/template_lists/:id" element={<TemplateList />} />
+            <Route path="/users" element={<Users />} />
+          </Routes>
+        </BrowserRouter>
+      </ApolloProvider>
+    </Layout>
   );
 }
 
