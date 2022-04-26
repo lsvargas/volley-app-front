@@ -19,7 +19,7 @@ import {
 
 
 const client = new ApolloClient({
-  uri: 'https://9e7d-2800-150-11d-1d1-aba9-f27-a9ca-7987.ngrok.io/',
+  uri: process.env.REACT_APP_BACKEND_URL,
   cache: new InMemoryCache()
 });
 
