@@ -59,7 +59,7 @@ const updateDeletePlayerFromList = (cache, { data: { deleteUserTemplateList } },
 };
 
 const updateAddPlayerToList = (cache, { data: { createUserTemplateList } }, id) => {
-
+  console.log(createUserTemplateList)
   cache.updateQuery({ query: FETCH_TEMPLATE_LIST, variables: { templateListId: id } }, (data) => ({
     templateList: {
       ...data.templateList,

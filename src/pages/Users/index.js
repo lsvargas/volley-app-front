@@ -29,7 +29,7 @@ function Users() {
   const handleAddUser = async () => {
     addUser({ variables: { name, lastname }});
     setName('');
-    setLastname('')
+    setLastname('');
   };
 
   const handleDelete = id => {

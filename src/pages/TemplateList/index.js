@@ -37,6 +37,7 @@ function TemplateList() {
   };
 
   const handleAddPlayer = () => {
+    console.log(value)
     const { id: uId } = value;
     addPlayerToList({ variables: { userId: uId, templateListId: id } });
     setValue(null);

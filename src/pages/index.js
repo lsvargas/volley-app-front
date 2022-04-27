@@ -4,6 +4,8 @@ import Users from './Users';
 import Lists from './Lists';
 import Home from './Home';
 import List from './List';
+import Register from './Register';
+import Login from './Login';
 
 export {
   TemplateLists,
@@ -11,5 +13,7 @@ export {
   Users,
   Lists,
   Home,
-  List
+  List,
+  Register,
+  Login
 };

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';

@@ -1,5 +1,3 @@
-
-import { useState } from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import Typography from '@mui/material/Typography';
 
@@ -19,14 +17,11 @@ function Lists() {
     update: (cache, props) => updateDeleteList(cache, props)
   });
 
-
   const handleDelete = id => {
     deleteUserFromList({ variables: { deleteListId: id }});
   };
 
   if (loading) return <Loader />;
-
-  console.log(data)
 
   return (
     <>

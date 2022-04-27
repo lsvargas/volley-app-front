@@ -30,6 +30,8 @@ function ListComponent({
   setValue,
   usersLoading
 }) {
+
+  console.log(users)
   return (
     <>
       <div style={style2}>
