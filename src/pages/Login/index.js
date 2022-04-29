@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useMutation } from "@apollo/client";
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,10 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const context = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (context?.user) navigate('/');
+  }, [])
 
   const handleComplete = ({ loginUser }) => {
     context.login(loginUser)

@@ -3,7 +3,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Loader from '../Loader';
 
 
-function AutocompleteComponent({ allUsers, users, value, setValue, usersLoading }) {
+function AutocompleteComponent({
+  allUsers,
+  users,
+  value,
+  setValue,
+  usersLoading,
+  title
+}) {
   const usersIds = users?.map(user => user.userId);
   const parsedUsers = allUsers
     ?.filter(user => !usersIds.includes(parseInt(user.id, 10)))
@@ -43,7 +50,7 @@ function AutocompleteComponent({ allUsers, users, value, setValue, usersLoading 
           sx={{ width: 300 }}
           freeSolo
           renderInput={(params) => (
-            <TextField {...params} label="Agregar voleibolista" />
+            <TextField {...params} label={title} />
           )}
         />
       )}

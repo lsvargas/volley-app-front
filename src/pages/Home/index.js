@@ -9,8 +9,7 @@ import { useQuery, useMutation } from "@apollo/client";
 
 import {
   FETCH_TEMPLATE_LISTS,
-  CREATE_LIST,
-  updateCreateList
+  CREATE_LIST
 } from './graphql';
 import TemplateListSelect from '../../components/Home/Select';
 import Loader from "../../components/Loader";
@@ -23,16 +22,16 @@ function Home() {
   const { loading, data } = useQuery(FETCH_TEMPLATE_LISTS);
 
   const handleCreateSuccess = ({ createList }) => {
-    setLink(`https://volley-app-front.vercel.app/lists/${createList.id}`)
+    setLink(`${process.env.REACT_APP_LIST_LINK_URL}${createList.id}`)
   };
 
   const [createList] = useMutation(CREATE_LIST, {
-    update: (cache, props) => updateCreateList(cache, props),
-    onCompleted: handleCreateSuccess
+    onCompleted: handleCreateSuccess,
+    refetchQueries: ['Lists']
   });
 
   const handleDateChange = newValue => {
-    setValue(newValue);
+    setValue(newValue.toISOString());
   };
 
   const handleSelectChange = (event) => {
@@ -40,7 +39,7 @@ function Home() {
   };
 
   const handleCreateList = () => {
-    createList({ variables: { templateListId: templateList } })
+    createList({ variables: { templateListId: templateList, date: value } })
   };
 
 
@@ -49,7 +48,7 @@ function Home() {
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <div style={{ maxWidth: 400 }}>
-        <Typography sx={{ marginLeft: '0.5rem', marginBottom: '3rem' }} variant="h4">
+        <Typography sx={{ marginLeft: '0.5rem', marginBottom: '2rem' }} variant="h4">
           Crear Lista
         </Typography>
 
@@ -72,6 +71,7 @@ function Home() {
             sx={{  width: '100%', minHeight: '50px' }}
             variant="contained"
             onClick={handleCreateList}
+            disabled={templateList === ''}
           >
             Crear
           </Button>

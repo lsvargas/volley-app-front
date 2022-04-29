@@ -30,14 +30,15 @@ function TemplateList() {
     variables: { templateListId: id },
   });
 
-  const { loading: usersLoading, data: allUsers } = useQuery(FETCH_ALL_USERS);
+  const { loading: usersLoading, data: allUsers } = useQuery(FETCH_ALL_USERS, {
+    fetchPolicy: 'network-only'
+  });
 
   const handleDeletePlayer = ({ userId }) => {
     deletePlayerFromList({ variables: { userId, templateListId: id } });
   };
 
   const handleAddPlayer = () => {
-    console.log(value)
     const { id: uId } = value;
     addPlayerToList({ variables: { userId: uId, templateListId: id } });
     setValue(null);

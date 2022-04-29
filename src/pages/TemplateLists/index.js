@@ -23,7 +23,8 @@ function TemplateList() {
   });
 
   const [addTemplateList] = useMutation(ADD_TEMPLATE_LIST, {
-    update: (cache, props) => updateAddTemplateList(cache, props)
+    update: (cache, props) => updateAddTemplateList(cache, props),
+    refetchQueries: ['TemplateLists']
   });
 
   const handleInputChange = ({ target }) => {

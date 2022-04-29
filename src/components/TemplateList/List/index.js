@@ -30,8 +30,6 @@ function ListComponent({
   setValue,
   usersLoading
 }) {
-
-  console.log(users)
   return (
     <>
       <div style={style2}>
@@ -41,6 +39,7 @@ function ListComponent({
           value={value}
           setValue={setValue}
           usersLoading={usersLoading}
+          title="Agregar voleibolista"
         />
         <div>
           <AddCircleIcon

@@ -57,7 +57,7 @@ export default function ToggleColorMode({ children }) {
           primary: {
             ...amber,
             ...(mode === 'dark' && {
-              main: amber[300],
+              main: '#eb9931',
             }),
           },
           ...(mode === 'dark' && {

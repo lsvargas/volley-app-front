@@ -10,23 +10,15 @@ const FETCH_TEMPLATE_LISTS = gql`
 `;
 
 const CREATE_LIST = gql`
-  mutation CreateList($templateListId: ID!) {
-    createList(templateListId: $templateListId) {
+  mutation CreateList($templateListId: ID!, $date: String) {
+    createList(templateListId: $templateListId, date: $date) {
       name
       id
     }
   }
 `;
 
-const updateCreateList = (cache, { data: { createUser } }) => {
-
-  // cache.updateQuery({ query: FETCH_LIST }, (data) => ({
-  //   users: [...data.users, createUser]
-  // }));
-};
-
 export {
   FETCH_TEMPLATE_LISTS,
-  CREATE_LIST,
-  updateCreateList
+  CREATE_LIST
 };

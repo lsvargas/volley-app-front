@@ -28,10 +28,12 @@ function ListComponent({
         <Typography sx={{}} variant="p">
           Por confirmar
         </Typography>
-        {unconfirmedUsers?.map(({ id, name, lastname }, idx) => (
+        {unconfirmedUsers?.map(({ id, name, lastname, waitingList }, idx) => (
           <div key={id}>
             <ListItem>
-              <ListItemText primary={`${idx + 1}. ${name} ${lastname}`} />
+              <ListItemText
+                primary={`${idx + 1}. ${name} ${lastname} ${waitingList ? " - (L.E)" : ""}`}
+              />
               <Checkbox
                 onChange={() => handleUserClick(1, id)}
                 sx={{
