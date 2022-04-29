@@ -7,7 +7,6 @@ import { AuthContext } from '../../../context/authContext';
 function ProtectedRoute({ redirectPath='/login' }) {
   const context = useContext(AuthContext);
 
-  console.log(context)
   if (!context?.user) {
     return <Navigate to={redirectPath} replace />;
   };
