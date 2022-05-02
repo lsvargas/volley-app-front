@@ -44,7 +44,7 @@ function TemplateList() {
     setValue(null);
   };
 
-  if (loading) return <Loader />;
+  if (!loading) return <Loader />;
 
   return (
     <>

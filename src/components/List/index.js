@@ -13,7 +13,7 @@ const style = {
 };
 
 
-function ListComponent({
+function  ListComponent({
   users,
   handleUserClick
 }) {
@@ -33,6 +33,7 @@ function ListComponent({
             <ListItem>
               <ListItemText
                 primary={`${idx + 1}. ${name} ${lastname} ${waitingList ? " - (L.E)" : ""}`}
+                sx={waitingList && ({ color: '#fbfbc1', fontWeight: 800 })}
               />
               <Checkbox
                 onChange={() => handleUserClick(1, id)}
@@ -66,7 +67,14 @@ function ListComponent({
           <div key={id}>
             <ListItem>
               <ListItemText primary={`${idx + 1}. ${name} ${lastname}`} />
-              <Checkbox onChange={() => handleUserClick(0, id)} />
+              <Checkbox
+                onChange={() => handleUserClick(0, id)}
+                sx={{
+                  '&.Mui-checked': {
+                    color: "#9e9e9e"
+                  }
+                }}
+              />
               <Checkbox
                 onChange={() => handleUserClick(2, id)}
                 sx={{
@@ -99,7 +107,14 @@ function ListComponent({
                   }
                 }}
               />
-              <Checkbox onChange={() => handleUserClick(0, id)} />
+              <Checkbox
+                onChange={() => handleUserClick(0, id)}
+                sx={{
+                  '&.Mui-checked': {
+                    color: "#9e9e9e"
+                  }
+                }}
+              />
             </ListItem>
             <Divider light />
           </div>

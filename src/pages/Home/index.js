@@ -42,7 +42,6 @@ function Home() {
     createList({ variables: { templateListId: templateList, date: value } })
   };
 
-
   if (loading) return <Loader />;
 
   return (
