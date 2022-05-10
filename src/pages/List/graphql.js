@@ -6,6 +6,7 @@ const FETCH_LIST = gql`
       id
       name
       date
+      closed
       users {
         id
         userId
@@ -35,6 +36,7 @@ const UPDATE_USER_LIST = gql`
       status
       name
       lastname
+      closed
     }
   }
 `;
@@ -48,6 +50,26 @@ const ADD_PLAYER_TO_LIST = gql`
       name
       lastname
       waitingList
+    }
+  }
+`;
+
+
+const UPDATE_LIST = gql`
+  mutation Mutation($updateListId: ID!, $closed: Boolean) {
+    updateList(id: $updateListId, closed: $closed) {
+      id
+      name
+      date
+      closed
+      users {
+        id
+        userId
+        status
+        name
+        lastname
+        waitingList
+      }
     }
   }
 `;
@@ -66,5 +88,6 @@ export {
   UPDATE_USER_LIST,
   FETCH_ALL_USERS,
   updateAddPlayerToList,
-  ADD_PLAYER_TO_LIST
+  ADD_PLAYER_TO_LIST,
+  UPDATE_LIST
 };

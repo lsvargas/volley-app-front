@@ -5,6 +5,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
 
+// TODO: Component refactor
 
 const style = {
   width: '100%',
@@ -12,12 +13,14 @@ const style = {
   bgcolor: 'background.paper',
 };
 
+const waitingListStyle = (waitingList) =>  
+  waitingList ? ({ color: '#fbfbc1', fontWeight: 800 }) : {};
 
-function  ListComponent({
+function ListComponent({
   users,
-  handleUserClick
+  handleUserClick,
+  closed
 }) {
-
   const confirmedUsers = users?.filter(user => user.status === 1);
   const unconfirmedUsers = users?.filter(user => user.status === 0);
   const declinedUsers = users?.filter(user => user.status === 2);
@@ -33,26 +36,30 @@ function  ListComponent({
             <ListItem>
               <ListItemText
                 primary={`${idx + 1}. ${name} ${lastname} ${waitingList ? " - (L.E)" : ""}`}
-                sx={waitingList && ({ color: '#fbfbc1', fontWeight: 800 })}
+                sx={waitingListStyle(waitingList)}
               />
-              <Checkbox
-                onChange={() => handleUserClick(1, id)}
-                sx={{
-                  color: "#a2e5a2",
-                  '&.Mui-checked': {
-                    color: "#a2e5a2"
-                  }}
-                }
-              />
-              <Checkbox
-                onChange={() => handleUserClick(2, id)}
-                sx={{
-                  color: "#f38585",
-                  '&.Mui-checked': {
-                    color: "#f38585"
-                  }}
-                }
-              />
+              {!closed && (
+                <>
+                  <Checkbox
+                    onChange={() => handleUserClick(1, id)}
+                    sx={{
+                      color: "#a2e5a2",
+                      '&.Mui-checked': {
+                        color: "#a2e5a2"
+                      }}
+                    }
+                  />
+                  <Checkbox
+                    onChange={() => handleUserClick(2, id)}
+                    sx={{
+                      color: "#f38585",
+                      '&.Mui-checked': {
+                        color: "#f38585"
+                      }}
+                    }
+                  />
+                </>
+              )}
             </ListItem>
             <Divider light />
           </div>
@@ -67,23 +74,27 @@ function  ListComponent({
           <div key={id}>
             <ListItem>
               <ListItemText primary={`${idx + 1}. ${name} ${lastname}`} />
-              <Checkbox
-                onChange={() => handleUserClick(0, id)}
-                sx={{
-                  '&.Mui-checked': {
-                    color: "#9e9e9e"
-                  }
-                }}
-              />
-              <Checkbox
-                onChange={() => handleUserClick(2, id)}
-                sx={{
-                  color: "#f38585",
-                  '&.Mui-checked': {
-                    color: "#f38585"
-                  }}
-                }
-              />
+              {!closed && (
+                <>
+                  <Checkbox
+                    onChange={() => handleUserClick(0, id)}
+                    sx={{
+                      '&.Mui-checked': {
+                        color: "#9e9e9e"
+                      }
+                    }}
+                  />
+                  <Checkbox
+                    onChange={() => handleUserClick(2, id)}
+                    sx={{
+                      color: "#f38585",
+                      '&.Mui-checked': {
+                        color: "#f38585"
+                      }}
+                    }
+                  />
+                </>
+              )}
             </ListItem>
             <Divider light />
           </div>
@@ -98,23 +109,27 @@ function  ListComponent({
           <div key={id}>
             <ListItem>
               <ListItemText primary={`${idx + 1}. ${name} ${lastname}`} />
-              <Checkbox
-                onChange={() => handleUserClick(1, id)}
-                sx={{
-                  color: "#a2e5a2",
-                  '&.Mui-checked': {
-                    color: "#a2e5a2"
-                  }
-                }}
-              />
-              <Checkbox
-                onChange={() => handleUserClick(0, id)}
-                sx={{
-                  '&.Mui-checked': {
-                    color: "#9e9e9e"
-                  }
-                }}
-              />
+              {!closed && (
+                <>
+                  <Checkbox
+                    onChange={() => handleUserClick(1, id)}
+                    sx={{
+                      color: "#a2e5a2",
+                      '&.Mui-checked': {
+                        color: "#a2e5a2"
+                      }
+                    }}
+                  />
+                  <Checkbox
+                    onChange={() => handleUserClick(0, id)}
+                    sx={{
+                      '&.Mui-checked': {
+                        color: "#9e9e9e"
+                      }
+                    }}
+                  />
+                </>
+              )}
             </ListItem>
             <Divider light />
           </div>

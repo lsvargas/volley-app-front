@@ -6,6 +6,7 @@ const FETCH_LISTS = gql`
       id
       name
       date
+      closed
     }
   }
 `;
