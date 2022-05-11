@@ -76,7 +76,7 @@ function TemplateList() {
         </Button>
       )}
       <Box display="flex">
-        <Typography fontSize={{ ...responsiveFS }} mb="0.5rem" ml="0.5rem" mr="1rem" variant="h4">
+        <Typography fontSize={{ ...responsiveFS }}  mr="1rem" variant="h4">
           {data?.list.name}
         </Typography>
         <Chip
@@ -85,7 +85,7 @@ function TemplateList() {
           color={closed ? 'error' : 'success'}
         />
       </Box>
-      <Typography sx={{ marginBottom: '1.5rem', marginLeft: '0.5rem', color: '#a8a9ad' }}>
+      <Typography mt={1} sx={{ marginBottom: '1.5rem', color: '#a8a9ad' }}>
         {parseDate(data?.list.date)}
       </Typography>
       {context?.user && !closed && (
