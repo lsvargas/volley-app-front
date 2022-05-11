@@ -11,6 +11,7 @@ const style = {
   width: '100%',
   maxWidth: 400,
   bgcolor: 'background.paper',
+  marginBottom: 1
 };
 
 const waitingListStyle = (waitingList) =>  
@@ -33,7 +34,7 @@ function ListComponent({
         </Typography>
         {unconfirmedUsers?.map(({ id, name, lastname, waitingList }, idx) => (
           <div key={id}>
-            <ListItem>
+            <ListItem sx={{ pr: 0, pt: 0, pb: 0 }}>
               <ListItemText
                 primary={`${idx + 1}. ${name} ${lastname} ${waitingList ? " - (L.E)" : ""}`}
                 sx={waitingListStyle(waitingList)}
@@ -72,7 +73,7 @@ function ListComponent({
         </Typography>
         {confirmedUsers?.map(({ id, name, lastname }, idx) => (
           <div key={id}>
-            <ListItem>
+            <ListItem sx={{ pr: 0, pt: 0, pb: 0 }}>
               <ListItemText primary={`${idx + 1}. ${name} ${lastname}`} />
               {!closed && (
                 <>
@@ -107,7 +108,7 @@ function ListComponent({
         </Typography>
         {declinedUsers?.map(({ id, name, lastname }, idx) => (
           <div key={id}>
-            <ListItem>
+            <ListItem sx={{ pr: 0, pt: 0, pb: 0 }}>
               <ListItemText primary={`${idx + 1}. ${name} ${lastname}`} />
               {!closed && (
                 <>

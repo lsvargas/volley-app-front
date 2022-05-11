@@ -1,17 +1,13 @@
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { useNavigate } from 'react-router-dom';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import Grid from '@mui/material/Grid';
+import { Typography } from '@mui/material';
 
-const style = {
-  width: '100%',
-  maxWidth: 400,
-  bgcolor: 'background.paper',
-};
+const responsiveFS = { sm: 15, lg: 20, md: 20, xs: 11 };
 
 const parseDate = date => {
   const arr = date.split('T')[0].split('-');
@@ -34,38 +30,40 @@ function ListComponent({
   };
 
   return (
-    <List sx={style} component="nav" aria-label="mailbox folders">
+    <Grid container pl="0.5rem" spacing={2}>
       {lists?.map(({ id, name, date, closed }) => (
-        <div key={id}>
-          <ListItem>
-            <ListItem sx={{ padding: 0 }} button onClick={() => handleClick(id)}>
-              <Box style={{ marginRight: '10px' }}>🏐</Box>
-              <ListItemText primary={name} />
+        <>
+          <Grid display="flex" item xs={5}>
+            <ListItem sx={{ p: 0 }} button onClick={() => handleClick(id)}>
+              <Box marginRight="2px" alignSelf="center">🏐</Box>
+              <Typography sx={{ alignSelf: 'center' }} fontSize={{ ...responsiveFS }}>
+                {name}
+              </Typography>
             </ListItem>
-
-            <Box mr={5}>
-              <Chip
-                sx={{ alignSelf: 'center', ...chipStyle(closed) }}
-                label={closed ? 'Cerrada' : 'Abierta'}
-              />
+          </Grid>
+    
+          <Grid item xs={3} >
+            <Chip
+              sx={{ alignSelf: 'center', fontSize: 12, ...chipStyle(closed) }}
+              label={closed ? 'Cerrada' : 'Abierta'}
+            />
+          </Grid>
+    
+          <Grid display="flex" item xs={4}>
+            <Box fontSize={{ ...responsiveFS }} marginRight="2px" color="#a8a9ad" alignSelf="center">
+              {parseDate(date)}
             </Box>
-
-            <Box display="flex">
-              <Box mr="10px" color="#a8a9ad" alignSelf="center">
-                {parseDate(date)}
-              </Box>
-              <DeleteForeverRoundedIcon
-                sx={{ cursor: 'pointer' }}
-                onClick={() => handleDelete(id)}
-                color="primary"
-              />
-            </Box>
-
-          </ListItem>
+            <DeleteForeverRoundedIcon
+              sx={{ cursor: 'pointer', alignSelf: 'center' }}
+              onClick={() => handleDelete(id)}
+              color="primary"
+            />
+          </Grid>      
           <Divider light />
-        </div>
+        </>
       ))}
-    </List>
+    </Grid>
+
   )
 };
 

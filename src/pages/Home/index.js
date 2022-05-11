@@ -46,8 +46,8 @@ function Home() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
-      <div style={{ maxWidth: 400 }}>
-        <Typography sx={{ marginLeft: '0.5rem', marginBottom: '2rem' }} variant="h4">
+      <div style={{ marginLeft: '0.5rem', maxWidth: 400 }}>
+        <Typography sx={{ marginBottom: '1.5rem' }} variant="h4">
           Crear Lista
         </Typography>
 

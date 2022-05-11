@@ -25,7 +25,7 @@ function Lists() {
 
   return (
     <>
-      <Typography sx={{ marginLeft: '0.5rem' }} variant="h4">
+      <Typography pl="0.5rem" mb={1.5} variant="h4">
         Listas
       </Typography>
       <ListComponent
