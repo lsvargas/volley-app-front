@@ -36,7 +36,6 @@ const UPDATE_USER_LIST = gql`
       status
       name
       lastname
-      closed
     }
   }
 `;
