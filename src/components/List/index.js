@@ -11,7 +11,8 @@ const style = {
   width: '100%',
   maxWidth: 400,
   bgcolor: 'background.paper',
-  marginBottom: 1
+  marginBottom: 1,
+  marginLeft: '0.5rem'
 };
 
 const waitingListStyle = (waitingList) =>  

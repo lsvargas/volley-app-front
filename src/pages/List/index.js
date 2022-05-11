@@ -20,6 +20,8 @@ import Loader from '../../components/Loader';
 import { parseDate } from '../../utils/date';
 import UserInput from '../../components/Lists/UserInput';
 
+const responsiveFS = { sm: 20, lg: 30, md: 25, xs: 20 };
+
 function TemplateList() {
   const { id } = useParams();
   const context = useContext(AuthContext);
@@ -66,7 +68,7 @@ function TemplateList() {
     <>
       {context?.user && (
         <Button
-          sx={{  mb: '1rem' }}
+          sx={{  ml: '0.5rem', mb: '1rem' }}
           variant="contained"
           onClick={() => handleListStatus()}
         >
@@ -74,7 +76,7 @@ function TemplateList() {
         </Button>
       )}
       <Box display="flex">
-        <Typography mb="0.5rem" ml="0.5rem" mr="1rem" variant="h4">
+        <Typography fontSize={{ ...responsiveFS }} mb="0.5rem" ml="0.5rem" mr="1rem" variant="h4">
           {data?.list.name}
         </Typography>
         <Chip
