@@ -2,7 +2,6 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Loader from '../Loader';
 
-
 function AutocompleteComponent({
   allUsers,
   users,

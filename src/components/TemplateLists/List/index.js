@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TextField from '@mui/material/TextField';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import { Draggable } from "react-beautiful-dnd";
 
 const style = {
   width: '100%',
@@ -26,7 +27,8 @@ function ListComponent({
   handleAddTemplateList,
   value,
   handleInputChange,
-  handleDelete
+  handleDelete,
+  provided
 }) {
   const { templateLists } = lists;
   const navigate = useNavigate();
@@ -36,7 +38,13 @@ function ListComponent({
   };
 
   return (
-    <List sx={style} component="nav" aria-label="mailbox folders">
+    <List
+      sx={style}
+      component="nav"
+      aria-label="mailbox folders"
+      {...provided.droppableProps}
+      ref={provided.innerRef}
+    >
       <div style={style2}>
         <TextField
           id="template-list"
@@ -54,22 +62,32 @@ function ListComponent({
           />
         </div>
       </div>
-      {templateLists?.map(({ id, name }) => (
-        <div key={id}>
-          <ListItem>
-            <ListItem sx={{ padding: 0 }} button onClick={() => handleClick(id)}>
-              <div style={{ marginRight: '10px' }}>🏐</div>
-              <ListItemText primary={name} />
-            </ListItem>
-            <DeleteForeverRoundedIcon
-              sx={{ cursor: 'pointer' }}
-              onClick={() => handleDelete(id)}
-              color="primary"
-            />
-          </ListItem>
-          <Divider light />
-        </div>
+      {templateLists?.map(({ id, name }, index) => (
+        <Draggable key={id} draggableId={id} index={index}>
+          {(provided) => (
+            <div
+              key={id}
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+            >
+              <ListItem>
+                <ListItem sx={{ padding: 0 }} button onClick={() => handleClick(id)}>
+                  <div style={{ marginRight: '10px' }}>🏐</div>
+                  <ListItemText primary={name} />
+                </ListItem>
+                <DeleteForeverRoundedIcon
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => handleDelete(id)}
+                  color="primary"
+                />
+              </ListItem>
+              <Divider light />
+            </div>
+          )}
+        </Draggable>
       ))}
+      {provided.placeholder}
     </List>
   )
 };

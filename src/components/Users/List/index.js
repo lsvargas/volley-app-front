@@ -30,6 +30,8 @@ function ListComponent({
   handleDelete
 }) {
 
+  const filteredUsers = users.filter(user => user.name.toLowerCase().includes(name.toLowerCase()))
+
   return (
     <List sx={style} component="nav" aria-label="mailbox folders">
       <div style={style2}>
@@ -57,7 +59,7 @@ function ListComponent({
           />
         </div>
       </div>
-      {users?.map(({ id, name, lastname }) => (
+      {filteredUsers?.map(({ id, name, lastname }) => (
         <div key={id}>
           <ListItem>
             <ListItemText primary={`${name} ${lastname}`} />
