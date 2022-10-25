@@ -5,7 +5,6 @@ const FETCH_TEMPLATE_LISTS = gql`
     templateLists {
       id
       name
-      priority
     }
   }
 `;
@@ -15,7 +14,6 @@ const ADD_TEMPLATE_LIST = gql`
     createTemplateList(name: $name) {
       id
       name
-      priority
     }
   }
 `;
@@ -25,7 +23,6 @@ const DELETE_TEMPLATE_LIST = gql`
     deleteTemplateList(id: $deleteTemplateListId) {
       id
       name
-      priority
     }
   }
 `;
@@ -35,7 +32,6 @@ const REORDER_TEMPLATE_LIST = gql`
     reOrderTemplateList(id: $reOrderTemplateListId, newPriority: $newPriority) {
       id
       name
-      priority
     }
   }
 `;
